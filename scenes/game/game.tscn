@@ -16,7 +16,7 @@ font = SubResource("FontFile_kelw5")
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ifgtf"]
-viewport_path = NodePath("HBoxContainer/GameDisplay/GameViewport")
+viewport_path = NodePath("GameDisplay/GameViewport")
 
 [sub_resource type="FontFile" id="FontFile_0sr1o"]
 cache/0/16/0/ascent = 0.0
@@ -33,23 +33,14 @@ font_color = Color(0, 0, 0, 1)
 layout_mode = 3
 anchors_preset = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 248.0
+[node name="LeftHUD" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(164, 320)
+layout_mode = 2
+offset_right = 164.0
 offset_bottom = 320.0
-size_flags_horizontal = 3
-
-[node name="LeftHUD" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Background" type="TextureRect" parent="HBoxContainer/LeftHUD"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
 texture = ExtResource("1_0sr1o")
 
-[node name="PlayerScore" type="Label" parent="HBoxContainer/LeftHUD/Background"]
+[node name="PlayerScore" type="Label" parent="LeftHUD"]
 layout_mode = 0
 offset_left = 2.0
 offset_right = 105.0
@@ -57,37 +48,40 @@ offset_bottom = 23.0
 text = "Player Score: 0"
 label_settings = SubResource("LabelSettings_lfrn8")
 
-[node name="GameDisplay" type="TextureRect" parent="HBoxContainer"]
-custom_minimum_size = Vector2(240, 0)
+[node name="GameDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(164, 320)
 layout_mode = 2
+offset_left = 165.0
+offset_top = 1.0
+offset_right = 405.0
+offset_bottom = 321.0
 texture = SubResource("ViewportTexture_ifgtf")
 stretch_mode = 4
 
-[node name="GameViewport" type="SubViewport" parent="HBoxContainer/GameDisplay"]
+[node name="GameViewport" type="SubViewport" parent="GameDisplay"]
 disable_3d = true
 transparent_bg = true
 size = Vector2i(240, 320)
 render_target_update_mode = 4
 
-[node name="GameWorld" type="Node2D" parent="HBoxContainer/GameDisplay/GameViewport"]
+[node name="GameWorld" type="Node2D" parent="GameDisplay/GameViewport"]
 
-[node name="GameCamera" type="Camera2D" parent="HBoxContainer/GameDisplay/GameViewport/GameWorld"]
+[node name="GameCamera" type="Camera2D" parent="GameDisplay/GameViewport/GameWorld"]
 script = ExtResource("2_7h61r")
 
-[node name="Background" type="Sprite2D" parent="HBoxContainer/GameDisplay/GameViewport/GameWorld"]
+[node name="Background" type="Sprite2D" parent="GameDisplay/GameViewport/GameWorld"]
 texture = ExtResource("1_7h61r")
 
-[node name="RightHUD" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(240, 0)
+[node name="RightHUD" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(164, 320)
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Background" type="TextureRect" parent="HBoxContainer/RightHUD"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
+offset_left = 401.0
+offset_top = -1.0
+offset_right = 565.0
+offset_bottom = 319.0
 texture = ExtResource("1_0sr1o")
 
-[node name="StageMapLabel" type="Label" parent="HBoxContainer/RightHUD/Background"]
+[node name="StageMapLabel" type="Label" parent="RightHUD"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
